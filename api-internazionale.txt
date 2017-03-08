@@ -1,0 +1,30 @@
+
+INTERNAZIONALE API REFERENCE
+
+['oroscopo', 'sommario', 'reportage', 'opinioni', 'photogallery', 'video', 
+'punto', 'weekend', 'scienza', 'favola', 'regole', 'poesia', 'economia',  
+'audio', 'story', 'tag', 'ultimora', 'home', 'savagelove', 'datidifatto',
+'tag-festival', 'festival-search'];
+
+latest items api:  
+http://data.internazionale.it/stream_data/new_items/[SECTION]/[LIMIT 0=20]/0.json
+http://data.internazionale.it/stream_data/new_items/home/0/0.json
+
+items api:
+http://data.internazionale.it/stream_data/items/[SECTION]/[LIMIT 0=20]/[ID||0]/[MOST RECENT TIMESTAMP YYYY-MM-DD_HH-MM-SS].json
+http://data.internazionale.it/stream_data/items/home/2/2508/2016-02-12_00-00-00.json
+http://data.internazionale.it/stream_data/items/tag/0/2508/2016-02-12_14-17-45.json
+http://data.internazionale.it/stream_data/items/portfolio/10/0/2017-02-02_00-00-01.json
+
+count api:        
+http://data.internazionale.it/stream_data/count_items/[SECTION]/[ID||SEARCHTERMS||0].json
+http://data.internazionale.it/stream_data/count_items/home/0.json
+http://data.internazionale.it/stream_data/count_items/tag/13181.json
+http://data.internazionale.it/stream_data/count_items/search/Elio%20e%20le%20storie%20tese.json
+
+search api :  
+http://data.internazionale.it/stream_data/items/search/[SEARCHTERMS].json    
+http://data.internazionale.it/stream_data/items/search/Elio%20e%20le%20storie%20tese/0/0.json
+
+
+https://scraper-gbuonc.rhcloud.com/internazionale/
