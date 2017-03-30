@@ -7,7 +7,8 @@ body {
   padding: 0;
 }
 img{display: inline-block; width: 100%; height: auto;}
-.menu-wrapper{border:1px solid red; overflow: visible; width: 100%; white-space: nowrap; margin-top:30px}
+.menu-wrapper{border:1px solid red; overflow: visible; width: 80%; white-space: nowrap; margin:10px auto;}
+.scroll-wrapper{touch-action: none; /* fix iscroll on mobile -> */}
 .navbar{display: inline-block; padding: 0;}
 .navbar > li{ display: inline-block; list-style-type: none; padding: 6px;}
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactIScroll from 'react-iscroll'
-import iScroll from 'iscroll/build/iscroll-lite'
+import iScroll from 'iscroll/build/iscroll'
 class SlideMenu extends Component{
    constructor(props){
       super();
@@ -9,11 +9,12 @@ class SlideMenu extends Component{
    render(){
       const scrollOptions={
          scrollX: true, 
-         scrollY: false
+         scrollY: false,
+         freeScroll : true
       }
       return(
          <div className="menu-wrapper">
-          <ReactIScroll iScroll={iScroll} options={scrollOptions}>
+          <ReactIScroll className="scroll-wrapper" iScroll={iScroll} options={scrollOptions}>
              <ul className="navbar">
             {  
                this.props.menu.map((item,i, array)=>{
