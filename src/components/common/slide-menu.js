@@ -36,18 +36,28 @@ class SlideMenu extends Component{
          scrollY: false,
          snap: 'li'
       }
+      const style={
+         width:this.state.selectedLabel.width,
+         transform:`translateX(${this.state.selectedLabel.offsetLeft}px)`
+      }
       return(
          <div className="menu-wrapper">
             {this.props.activeSlide}
             <ReactIScroll className="scroll-wrapper" iScroll={iScroll} options={scrollOptions} onRefresh={(iScrollInstance)=>this.onRefresh(iScrollInstance)}>
                <navbar>
+                  <div className="test" style={style}></div>
                   <ul className="navbar">
                      {this.props.menu.map((item,i, array)=>{
                         const menuLabel = this.props.menu[i];
-                        return <li key={i} ref={(el)=>this.labels[menuLabel]=el} onClick={()=>this.changePage(i)}>{item}</li>
+                        return <li  key={i} 
+                                    className={this.props.activeSlide === i ? 'active':''}
+                                    ref={(el)=>this.labels[menuLabel]=el} 
+                                    onClick={()=>this.changePage(i)}>
+                                 {item}
+                              </li>
                      })}  
                   </ul>
-               <div className="test" style={{'width':this.state.selectedLabel.width, 'left':this.state.selectedLabel.offsetLeft}}></div>
+               
             </navbar>
          </ReactIScroll>
          </div>

@@ -10,6 +10,8 @@ img{display: inline-block; width: 100%; height: auto;}
 .menu-wrapper{border-bottom:1px solid red;  white-space: nowrap; margin:10px auto;}
 .scroll-wrapper{touch-action: none; /* fix iscroll on mobile -> */}
 navbar{display: inline-block; padding: 0;}
-navbar li{ display: inline-block; list-style-type: none; padding: 6px;}
-.test{position: absolute; bottom:0; left:0; background:#000; width:100px; height:5px; transition: all 200ms ease-in-out;}
+navbar ul{position: relative; z-index: 1;}
+navbar li{ display: inline-block; list-style-type: none; padding: 6px; cursor: pointer; transition: all 300ms ease; color:#000;}
+.test{position: absolute; bottom:0; top:0; left:0; background:#000; width:100px; transition: all 200ms ease-in-out; z-index: 0;}
+.active{color: #fff; cursor: default;}
 
