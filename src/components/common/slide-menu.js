@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import ReactIScroll from 'react-iscroll'
-import iScroll from 'iscroll/build/iscroll'
+// import iScroll from 'iscroll/build/iscroll-lite'
+const iScroll = require('iscroll/build/iscroll-lite');
 class SlideMenu extends Component{
    constructor(props){
       super();
