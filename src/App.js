@@ -1,7 +1,24 @@
 import React, {Component} from 'react'
 import SlideMenu from './components/common/slide-menu'
+import SwipeableViews from 'react-swipeable-views';
 import request from 'superagent'
 
+const styles = {
+  slide: {
+    padding: 15,
+    minHeight: 100,
+    color: '#fff',
+  },
+  slide1: {
+    background: '#FEA900',
+  },
+  slide2: {
+    background: '#B3DC4A',
+  },
+  slide3: {
+    background: '#6AC0FF',
+  },
+};
 
 class App extends Component{
    constructor(){
@@ -35,10 +52,20 @@ class App extends Component{
             this.setState({contents:newContents})
             });
    }
+   changeSlide(currentIndex){
+      this.setState({activeSlide:currentIndex})
+      console.log(currentIndex)
+   }
    render(){
       return <div>
-         <SlideMenu activeSlide={this.state.activeSlide} menu={this.state.menu} />
+         <SlideMenu activeSlide={this.state.activeSlide} menu={this.state.menu} changePage={this.changeSlide.bind(this)}/>
 
+         
+         <SwipeableViews index={this.state.activeSlide} resistance={true} onChangeIndex={(currentIndex, prevIndex)=>this.changeSlide(currentIndex, prevIndex)}>
+            <div>
+               <h1>Hello</h1>
+            </div>
+         <div>
          {this.state.contents.latestNews.map((item)=>{
             return(<div key={item.post_id}>
                <small>{item.type}</small>
@@ -46,6 +73,8 @@ class App extends Component{
             </div>
             )
          })}
+         </div>
+          <div>
          {this.state.contents.hp.map((item)=>{
             return (
                <div key={item.id}>
@@ -73,6 +102,8 @@ class App extends Component{
                </div>
             )
          })}
+         </div>
+         </SwipeableViews>
       </div>
    }
 }

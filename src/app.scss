@@ -7,8 +7,9 @@ body {
   padding: 0;
 }
 img{display: inline-block; width: 100%; height: auto;}
-.menu-wrapper{border:1px solid red; overflow: visible; width: 80%; white-space: nowrap; margin:10px auto;}
+.menu-wrapper{border-bottom:1px solid red;  white-space: nowrap; margin:10px auto;}
 .scroll-wrapper{touch-action: none; /* fix iscroll on mobile -> */}
-.navbar{display: inline-block; padding: 0;}
-.navbar > li{ display: inline-block; list-style-type: none; padding: 6px;}
+navbar{display: inline-block; padding: 0;}
+navbar li{ display: inline-block; list-style-type: none; padding: 6px;}
+.test{position: absolute; bottom:0; left:0; background:#000; width:100px; height:5px; transition: all 200ms ease-in-out;}
 
