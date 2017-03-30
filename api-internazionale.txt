@@ -26,5 +26,4 @@ search api :
 http://data.internazionale.it/stream_data/items/search/[SEARCHTERMS].json    
 http://data.internazionale.it/stream_data/items/search/Elio%20e%20le%20storie%20tese/0/0.json
 
-
-https://scraper-gbuonc.rhcloud.com/internazionale/
+http://data.internazionale.it/ ==> https://scraper-gbuonc.rhcloud.com/internazionale/
