@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import ReactIScroll from 'react-iscroll'
 import iScroll from 'iscroll/build/iscroll'
-class SlideMenu extends Component{
+
+class Navbar extends Component{
    constructor(props){
       super();
       this.labels={};
@@ -42,25 +43,29 @@ class SlideMenu extends Component{
          MozTransform:`translateX(${this.state.selectedLabel.offsetLeft}px)`,
       }
       return(
-         <div className="menu-wrapper">
-          <ReactIScroll className="scroll-wrapper" iScroll={iScroll} options={scrollOptions} onRefresh={(iScrollInstance)=>this.onRefresh(iScrollInstance)}>
-               <navbar>
-                  <div className="test" style={style}></div>
-                  <ul className="navbar">
-                     {this.props.menu.map((item,i, array)=>{
-                        const menuLabel = this.props.menu[i];
-                        return <li  key={i} 
-                                    className={this.props.activeSlide === i ? 'active':''}
-                                    ref={(el)=>this.labels[menuLabel]=el} 
-                                    onClick={()=>this.changePage(i)}>
-                                 {item}
-                              </li>
-                     })}  
-                  </ul>
+         <ReactIScroll 
+            className="scroll-wrapper" 
+            iScroll={iScroll} 
+            options={scrollOptions} 
+            onRefresh={(iScrollInstance)=>this.onRefresh(iScrollInstance)}>
+            <navbar>
+               {/*<div className="label-runner" style={style}></div>  */}         
+               <ul>
+                  {this.props.menu.map((item,i)=>{
+                     const menuLabel = this.props.menu[i];
+                     return(
+                        <li key={i} 
+                        className={this.props.activeSlide === i ? 'active':''}
+                        ref={(el)=>this.labels[menuLabel]=el} 
+                        onClick={()=>this.changePage(i)}>
+                           {item}
+                        </li>
+                     ) 
+                  })}  
+               </ul>
             </navbar>
          </ReactIScroll>
-         </div>
       )
    }
 }
-export default SlideMenu;
+export default Navbar
