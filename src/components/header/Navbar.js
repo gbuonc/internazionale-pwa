@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactIScroll from 'react-iscroll'
-import iScroll from 'iscroll/build/iscroll'
+import iScroll from 'iscroll/build/iscroll.js'
 
 class Navbar extends Component{
    constructor(props){
