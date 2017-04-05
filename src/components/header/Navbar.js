@@ -22,7 +22,7 @@ class Navbar extends Component{
    }
    setActiveLabel(labelIndex=0){
       const currentSelectedLabel = this.labels[this.props.menu[labelIndex]]
-      const offsetLeft = currentSelectedLabel.offsetLeft
+      const offsetLeft = currentSelectedLabel.getBoundingClientRect().width
       const width = currentSelectedLabel.getBoundingClientRect().width
       const selectedLabel = {offsetLeft, width}
       this.setState({selectedLabel});
@@ -34,7 +34,7 @@ class Navbar extends Component{
       const scrollOptions={
          scrollX: true, 
          scrollY: false,
-         snap: 'li'
+         snap: 'ul li'
       }
       const style={
          width:this.state.selectedLabel.width,
@@ -43,13 +43,14 @@ class Navbar extends Component{
          MozTransform:`translateX(${this.state.selectedLabel.offsetLeft}px)`,
       }
       return(
+         <div>
          <ReactIScroll 
             className="scroll-wrapper" 
             iScroll={iScroll} 
             options={scrollOptions} 
             onRefresh={(iScrollInstance)=>this.onRefresh(iScrollInstance)}>
             <navbar>
-               {/*<div className="label-runner" style={style}></div>  */}         
+               
                <ul>
                   {this.props.menu.map((item,i)=>{
                      const menuLabel = this.props.menu[i];
@@ -63,8 +64,11 @@ class Navbar extends Component{
                      ) 
                   })}  
                </ul>
+               <div className="label-runner" style={style}></div>
             </navbar>
          </ReactIScroll>
+         
+         </div>
       )
    }
 }

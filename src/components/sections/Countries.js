@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
 const Countries = ()=>{
-   return <div>Countries</div>
+   return <div className="section-view">Countries</div>
 }
 export default Countries

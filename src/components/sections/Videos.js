@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
 const Videos = ()=>{
-   return <div>Videos</div>
+   return <div className="section-view">  Videos</div>
 }
 export default Videos
