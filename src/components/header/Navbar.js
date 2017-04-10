@@ -1,75 +1,37 @@
-import React, {Component} from 'react'
-import ReactIScroll from 'react-iscroll'
-import iScroll from 'iscroll/build/iscroll.js'
+import React, { Component } from "react";
+import { ViewPager, Frame, Track, View } from "react-view-pager";
 
-class Navbar extends Component{
-   constructor(props){
+class Navbar extends Component {
+   constructor(props) {
       super();
-      this.labels={};
-      this.state={
-         selectedLabel:{
-            offsetLeft:0,
-            width:0
-         }
-      }
+      this.labels = {};
    }
-   componentWillReceiveProps(props){
-      this.setActiveLabel(props.activeSlide);
+   changePage(pageIndex) {
+      this.props.changePage(pageIndex);
    }
-   changePage(pageIndex){
-      this.setActiveLabel(pageIndex)
-      this.props.changePage(pageIndex)
-   }
-   setActiveLabel(labelIndex=0){
-      const currentSelectedLabel = this.labels[this.props.menu[labelIndex]]
-      const offsetLeft = currentSelectedLabel.getBoundingClientRect().width
-      const width = currentSelectedLabel.getBoundingClientRect().width
-      const selectedLabel = {offsetLeft, width}
-      this.setState({selectedLabel});
-   }
-   onRefresh(iScrollInstance){
-      iScrollInstance.goToPage(this.props.activeSlide, 0 ,500)
-   }
-   render(){
-      const scrollOptions={
-         scrollX: true, 
-         scrollY: false,
-         snap: 'ul li'
-      }
-      const style={
-         width:this.state.selectedLabel.width,
-         transform:`translateX(${this.state.selectedLabel.offsetLeft}px)`,
-         WebkitTransform:`translateX(${this.state.selectedLabel.offsetLeft}px)`,
-         MozTransform:`translateX(${this.state.selectedLabel.offsetLeft}px)`,
-      }
-      return(
-         <div>
-         <ReactIScroll 
-            className="scroll-wrapper" 
-            iScroll={iScroll} 
-            options={scrollOptions} 
-            onRefresh={(iScrollInstance)=>this.onRefresh(iScrollInstance)}>
-            <navbar>
-               
-               <ul>
-                  {this.props.menu.map((item,i)=>{
+   render() {
+      return (
+         <ViewPager tag="navbar">
+            <Frame className="frame">
+               <Track tag="ul" viewsToShow="auto" viewsToMove={2} currentView={this.props.activeSlide} contain={true}>
+                  {this.props.menu.map((item, i) => {
                      const menuLabel = this.props.menu[i];
-                     return(
-                        <li key={i} 
-                        className={this.props.activeSlide === i ? 'active':''}
-                        ref={(el)=>this.labels[menuLabel]=el} 
-                        onClick={()=>this.changePage(i)}>
+                     return (
+                        <View
+                           tag="li"
+                           key={i}
+                           className={this.props.activeSlide === i ? "active" : ""}
+                           ref={el => this.labels[menuLabel] = el}
+                           onClick={() => this.changePage(i)}
+                        >
                            {item}
-                        </li>
-                     ) 
-                  })}  
-               </ul>
-               <div className="label-runner" style={style}></div>
-            </navbar>
-         </ReactIScroll>
-         
-         </div>
-      )
+                        </View>
+                     );
+                  })}
+               </Track>
+            </Frame>
+         </ViewPager>
+      );
    }
 }
-export default Navbar
+export default Navbar;

@@ -6,31 +6,34 @@ body {margin: 0; padding: 0;
    line-height: 1.5;
    color: #202030;
    font-size: 0.85rem;
+    touch-action: none; /* fix iscroll on mobile -> */
 }
 *{position: relative; box-sizing: border-box; margin:0 auto;}
 h1, h2, h3, h4, h5, h6, .tit{font-family: 'Oswald', sans-serif; font-weight: 300;}
 a{color: #000;}
 /* common ------------ */
-.scroll-wrapper{touch-action: none; /* fix iscroll on mobile -> */}
+.scroll-wrapper{ }
 img{display: inline-block; width: 100%; height: auto;}
-.app{padding-top: 120px;}
+.app{padding-top: 115px;}
 .mainWrap{height: 100%;}
 /* header ------------ */
 header{position: fixed; top:0;left:0; width: 100%; z-index: 2; background: #fff;}
-.top-header{background: #236b91; color:#fff; font-size: 1em; margin: 0; padding: 7px;}
+.top-header{background: slategrey; color:#fff; font-size: 1em; margin: 0; padding: 7px;}
 .top-header h1{margin: 0;}
-navbar{display: inline-block; padding: 0; background: #fff;}
-navbar ul{position: relative; white-space: nowrap; list-style-type: none; margin: 0; padding: 7px 0;}
-navbar li{ display: inline-block; list-style-type: none; padding: 6px 10px; cursor: pointer; transition: all 300ms ease; font-weight: 900; font-size: 2em;}
+navbar{display: inline-block; padding: 0; background: #fff; width: 100%;}
+.frame{width: 100%; outline: transparent;}
+navbar ul{position: relative; white-space: nowrap; list-style-type: none; margin: 0; padding:0;}
+navbar li{ display: inline-block; list-style-type: none; padding: 6px 10px; cursor: pointer; font-weight: 900; font-size: 2em;}
 .label-runner{position: absolute; bottom:0; top:80%; left:0; background:#000; width:100px; transition: all 200ms ease-in-out;}
 .active{cursor: default; color:#e08915; font-weight: 900; }
 
 /* Swipe */
 .content{position: absolute; top:0px; width: 100%; left:0; bottom:0; overflow: hidden;}
 .content > div{height: 100%;}
-.react-swipeable-view-container{height: 100%!important;}
+.view-track{height: 100%;}
+.view-wrapper{height: 100%; position: relative;}
 .section-view{
-   width: 100%; height:100%; background: slategrey; position: absolute; top:0; overflow: auto;
+   width: 100%; height:100%; position: absolute; top:0; overflow: auto;
    transition: all 200ms ease-in-out;
 }
 .swiping .section-view{transform: scale(.95)}

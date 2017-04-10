@@ -8,7 +8,6 @@ class Home extends Component {
       contents: []
     };
   }
-  componentWillMout() {}
   componentDidMount() {
     request
       .get(
@@ -43,7 +42,6 @@ class Home extends Component {
                   }}
                 />
               </div>
-              
               <div className="article-preview-authors">
                 {item.authors_list.length > 0 &&
                   <span>
