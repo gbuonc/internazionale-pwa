@@ -13,7 +13,7 @@ class Navbar extends Component {
       return (
          <ViewPager tag="navbar">
             <Frame className="frame">
-               <Track tag="ul" viewsToShow="auto" viewsToMove={2} currentView={this.props.activeSlide} contain={true}>
+               <Track tag="ul" viewsToShow="auto" viewsToMove={3} currentView={this.props.activeSlide} contain={true}>
                   {this.props.menu.map((item, i) => {
                      const menuLabel = this.props.menu[i];
                      return (
