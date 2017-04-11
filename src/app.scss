@@ -12,7 +12,6 @@ body {margin: 0; padding: 0;
 a{color: #000;}
 
 /* common ------------ */
-.scroll-wrapper{ }
 img{display: inline-block; width: 100%; height: auto;}
 .app{padding-top: 82px;}
 .mainWrap{height: 100%;}
@@ -155,4 +154,57 @@ navbar li{
 }
 .card-content{
     font-size: 1.1em;
+}
+
+/* SPINNER ------------------------------ */
+.spinner {
+  width: 4.5em;
+  height: 4.5em;
+  margin: 5em auto;
+  background-color: #e08915;
+  border-radius: 100%;  
+  -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
+  animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@-webkit-keyframes sk-scaleout {
+  0% { -webkit-transform: scale(0) }
+  100% {
+    -webkit-transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@keyframes sk-scaleout {
+  0% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 100% {
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+/* ERRORS */
+.error{
+    text-align: center;
+    font-family: Muli;
+    font-weight: 700;
+}
+.btn{
+    display: inline-block;
+    margin: 1em auto;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding: 0.4em 1em;
+    text-transform: uppercase;
+    color: #000;
+}
+/* LOAD MORE */
+.loadmore-wrapper{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    font-family: Muli;
+    font-weight: 700;
 }

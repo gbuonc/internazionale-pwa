@@ -1,4 +1,6 @@
 const config = {
+   APIendpoint :'https://scraper-gbuonc.rhcloud.com/internazionale/stream_data/',
+   storageKey: 'ipwa',
    sections:[
       {
          label:'Home',
