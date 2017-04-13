@@ -1,28 +1,21 @@
 import React, { Component } from "react";
 import { ViewPager, Frame, Track, View } from 'react-view-pager'
-import request from "superagent";
 
 import config from "./config";
 import Navbar from "./components/header/Navbar";
-import Home from "./components/sections/Home";
-import Now from "./components/sections/Now";
-import Opinions from "./components/sections/Opinions";
-import Reportage from "./components/sections/Reportage";
-import Stories from "./components/sections/Stories";
-import Portfolio from "./components/sections/Portfolio";
-import Videos from "./components/sections/Videos";
-import Science from "./components/sections/Science";
-import Countries from "./components/sections/Countries";
-import Rules from "./components/sections/Rules";
+import SectionPage from "./components/views/SectionPage";
+import ArticleType from "./components/views/ArticleType";
 
 class App extends Component {
    constructor() {
       super();
       this.state = {
          activeSlide: 0,
-         sections: config.sections,
-         swiping: false
+         swiping: false,
+         article: null
       }
+   }
+   componentDidMount(){
    }
    changeSlide(currentIndex, wait=0, reset=350) {
       setTimeout(()=>{
@@ -33,14 +26,25 @@ class App extends Component {
          });
       }, wait)
    }
+   loadArticle(article){
+    this.setState({article: article[0]});
+   }
+   goBack(){
+    this.setState({article: null});
+   }
    render() {
       return (
          <div className="mainWrap">
              <header>
-               <div className="top-header"><h1>Internazionale</h1></div>
+               <div className="top-header">
+                 {this.state.article &&
+                  <div className="go-back" onClick={()=>this.goBack()}>&laquo;</div>
+                 }
+                 <h1>Internazionale</h1>
+               </div>
                <Navbar
                   activeSlide={this.state.activeSlide}
-                  menu={this.state.sections.map(el => el.label)}
+                  menu={config.sections.map(el => el.label)}
                   changePage={this.changeSlide.bind(this)}
                /> 
             </header>
@@ -52,19 +56,23 @@ class App extends Component {
                      onSwipeMove={()=>{this.setState({swiping:true})}}
                      onViewChange={(index)=>{this.changeSlide(index[0], 200)}}
                   >
-                     <View className="view-wrapper"><Home/></View>
-                     <View className="view-wrapper"><Now/></View>
-                     <View className="view-wrapper"><Opinions/></View>
-                     <View className="view-wrapper"><Reportage/></View>
-                     <View className="view-wrapper"><Stories/></View>
-                     <View className="view-wrapper"><Portfolio/></View>
-                     <View className="view-wrapper"><Videos/></View>
-                     <View className="view-wrapper"><Science/></View>
-                     <View className="view-wrapper"><Countries/></View>
-                     <View className="view-wrapper"><Rules/></View>
+                    {/*LOOP THROUGH PAGES (each with its own component */}
+                    {config.sections.map((section, i)=>{
+                      return <SectionPage 
+                                key={section.label} 
+                                page={section.component} 
+                                loadArticle={this.loadArticle.bind(this)} 
+                                activeSlide = {this.state.activeSlide}
+                                slideIndex = {i}
+                              />
+                      })}
                   </Track>
                </Frame>
             </ViewPager>
+            {/*DETAIL VIEW ------------------------- */}
+            <div className={(this.state.article ? 'open' : '')+' articleDetail'}>
+              {this.state.article && <ArticleType article={this.state.article} />}
+            </div>
       </div>
       );
    }

@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 
-const Stories = ()=>{
-   return <div className="section-view">  Stories</div>
+class Stories extends Component{
+   componentDidMount(){
+      console.log('LOADED Stories')
+   }
+   render(){
+      return <div className="section-view">Stories</div>
+   }
 }
 export default Stories

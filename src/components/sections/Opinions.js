@@ -1,11 +1,11 @@
 import React, {Component} from 'react'
-import Spinner from '../common/Spinner'
 
-const Opinions = ()=>{
-   return (
-   <div className="section-view">Opinions
-      <Spinner enabled={true} />
-   </div>
-   )
+class Opinions extends Component{
+   componentDidMount(){
+      console.log('LOADED Opinions')
+   }
+   render(){
+      return <div className="section-view">Opinions</div>
+   }
 }
 export default Opinions

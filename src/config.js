@@ -1,46 +1,57 @@
+import Home from "./components/sections/Home";
+import Now from "./components/sections/Now";
+import Opinions from "./components/sections/Opinions";
+import Reportage from "./components/sections/Reportage";
+import Stories from "./components/sections/Stories";
+import Portfolio from "./components/sections/Portfolio";
+import Videos from "./components/sections/Videos";
+import Science from "./components/sections/Science";
+import Countries from "./components/sections/Countries";
+import Rules from "./components/sections/Rules";
+
 const config = {
    APIendpoint :'https://scraper-gbuonc.rhcloud.com/internazionale/stream_data/',
    storageKey: 'ipwa',
    sections:[
       {
          label:'Home',
-         component:'Home'
+         component:Home
       } ,
       {
          label:'Il Mondo adesso',
-         component:'Now'
+         component:Now
       },
       {
          label:'Opinioni',
-         component:'Opinions'
+         component:Opinions
       },
       {
          label:'Reportage',
-         component:'Reportage'
+         component:Reportage
       },
       {
          label:'Storie',
-         component:'Stories'
+         component:Stories
       },
       {
          label:'Portfolio',
-         component:'Portfolio'
+         component:Portfolio
       },
       {
          label:'Video',
-         component:'Videos'
+         component:Videos
       },
       {
          label:'Scienza',
-         component:'Science'
+         component:Science
       },
       {
          label:'Paesi',
-         component:'Countries'
+         component:Countries
       },
       {
          label:'Le Regole',
-         component:'Rules'
+         component:Rules
       }
    ]
 }

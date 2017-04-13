@@ -9,7 +9,18 @@ class Now extends Component {
     };
   }
   componentDidMount() {
-    request
+    console.log('LOADED Now')
+    
+  }
+  componentWillReceiveProps(nextProps){
+      if(nextProps.activeSlide===this.props.slideIndex && this.state.contents.length===0){
+        this.loadItems();
+      }
+      
+   }
+  loadItems(){
+    console.log("LOAD ITEMS");
+request
       .get(
         "https://scraper-gbuonc.rhcloud.com/internazionale/data/page_element/brief.json"
       )
@@ -44,12 +55,12 @@ class Now extends Component {
           return (
             <div key={item.post_id} className="card-view">
               <h2 className="card-title" dangerouslySetInnerHTML={{ __html: item.title }} />
-              <div className="card-content" dangerouslySetInnerHTML={{ __html: item.content }} />
               {item.img.url &&
                 <div className="card-picture">
                   <img src={item.img.url} alt={item.img.alt} />
                   <p><small>{item.img.caption}</small></p>
-                </div>}
+                </div>
+              }
               {item.content &&
                 <div className="card-content" dangerouslySetInnerHTML={{ __html: item.content }} />}
             </div>

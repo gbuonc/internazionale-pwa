@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 
-const Countries = ()=>{
-   return <div className="section-view">Countries</div>
+class Countries extends Component{
+   componentDidMount(){
+      console.log('LOADED Countries')
+   }
+   render(){
+      return <div className="section-view">Countries</div>
+   }
 }
 export default Countries

@@ -92,13 +92,18 @@ class Home extends Component {
       if (!item.image) classList.push("no-image");
       return classList.join(" ");
    }
+   loadArticle(id){
+      // pass article object to parent
+      const article = this.state.contents.filter(article=> article.id===id);
+      this.props.loadArticle(article);
+   }
    render() {
       const loadMore = (this.state.loadedItems > 0) && (this.state.loadedItems < this.state.totalItems);
       return (
          <div className="section-view" ref={(el)=>this.scrollableView = el}>
             {this.state.contents.map(item => {
                return (
-                  <div key={item.id} className={this.outputClassList(item)}>
+                  <div key={item.id} className={this.outputClassList(item)} onClick={()=>this.loadArticle(item.id)}>
                      <picture className="article-preview-picture">
                         <h5 className="article-category">{item.title_type}</h5>
                         <img src={item.social_image} />

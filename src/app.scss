@@ -18,8 +18,8 @@ img{display: inline-block; width: 100%; height: auto;}
 
 /* header ------------ */
 header{position: fixed; top:0;left:0; width: 100%; z-index: 2; background: #fff;}
-.top-header{background: slategrey; color:#fff; font-size: 1em; margin: 0; padding: 7px;}
-.top-header h1{margin: 0; font-family: 'Martel', sans-serif; font-weight: 300; font-size: 1.2em;letter-spacing: 0.03em;}
+.top-header{background: slategrey; color:#fff; font-size: 1em; margin: 0; padding: 7px; display: flex; justify-content: space-between;}
+.top-header h1{margin: 0; font-family: 'Martel', sans-serif; font-weight: 300; font-size: 1.2em;letter-spacing: 0.03em; display: inline-block;}
 navbar{display: inline-block; padding: 0; background: #fff; width: 100%; font-weight: 400; font-size: 1.2em;}
 .frame{width: 100%; outline: transparent;}
 navbar ul{position: relative; white-space: nowrap; list-style-type: none; margin: 0; padding:0;}
@@ -208,3 +208,18 @@ navbar li{
     font-family: Muli;
     font-weight: 700;
 }
+
+/* ARTICLE DETAILS ------------------------------ */
+.go-back{display: inline-block; flex-grow: 1}
+.articleDetail{
+    position: absolute;
+    top: -44px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: coral;
+    z-index: 3;
+    transform: translateY(100%);
+    transition: all 250ms ease-out;
+}
+.articleDetail.open{transform: translateY(0);}
