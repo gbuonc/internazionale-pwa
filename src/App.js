@@ -15,8 +15,6 @@ class App extends Component {
          article: null
       }
    }
-   componentDidMount(){
-   }
    changeSlide(currentIndex, wait=0, reset=350) {
       setTimeout(()=>{
          this.setState({ activeSlide: currentIndex}, ()=>{

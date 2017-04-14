@@ -4,9 +4,8 @@ class Default extends Component{
       super();
    }
    render(){
-      return <div>Default</div>;
-      /*const article = this.props.children[0];
-      console.log(this.props.children)
+      const article = this.props.article;
+      console.log(this.props.article)
       return(
          <div className="section-view">
             <h6>{article.title_type} {article.story_tag}</h6>
@@ -33,7 +32,7 @@ class Default extends Component{
             <p>{article.story_url}</p>
             <p>{article.url}</p>
          </div>
-      )*/
+      )
    }
 }
 export default Default;

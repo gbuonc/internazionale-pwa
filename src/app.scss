@@ -18,20 +18,20 @@ img{display: inline-block; width: 100%; height: auto;}
 
 /* header ------------ */
 header{position: fixed; top:0;left:0; width: 100%; z-index: 2; background: #fff;}
-.top-header{background: slategrey; color:#fff; font-size: 1em; margin: 0; padding: 7px; display: flex; justify-content: space-between;}
-.top-header h1{margin: 0; font-family: 'Martel', sans-serif; font-weight: 300; font-size: 1.2em;letter-spacing: 0.03em; display: inline-block;}
-navbar{display: inline-block; padding: 0; background: #fff; width: 100%; font-weight: 400; font-size: 1.2em;}
+.top-header{background: slategrey; color:#fff; font-size: 1rem; margin: 0; padding: 7px; display: flex; justify-content: space-between;}
+.top-header h1{margin: 0; font-family: 'Martel', sans-serif; font-weight: 300; font-size: 1.2rem;letter-spacing: 0.03rem; display: inline-block;}
+navbar{display: inline-block; padding: 0; background: #fff; width: 100%; font-weight: 400; font-size: 1.2rem;}
 .frame{width: 100%; outline: transparent;}
 navbar ul{position: relative; white-space: nowrap; list-style-type: none; margin: 0; padding:0;}
 navbar li{
     list-style-type: none;
-    padding: 0.5em;
+    padding: 0.5rem;
     cursor: pointer;
     font-family: 'Muli';
     text-transform: uppercase;
     font-weight: 700;
-    font-size: .8em;
-    letter-spacing: 0.05em;
+    font-size: .8rem;
+    letter-spacing: 0.05rem;
 }
 .active{cursor: default; color:#e08915;}
 
@@ -42,7 +42,7 @@ navbar li{
 .view-wrapper{height: 100%; position: relative;}
 .section-view{
    width: 100%; height:100%; position: absolute; top:0; overflow: auto;
-   padding: 1em;
+   padding: 0.5rem;
    transition: all 200ms ease-in-out;
 }
 .swiping .section-view{transform: scale(.95)}
@@ -50,18 +50,18 @@ navbar li{
 /* HOME VIEW  ARTICLES PREVIEW ------------ */
 .article-preview{
     border: 1px solid #ddd;
-    margin: 0 0 1em;
-    border-radius: 0.4em;
+    margin: 0 0 1rem;
+    border-radius: 0.4rem;
     background: #fff;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.5rem;
     overflow: hidden;
 }
 .article-category{
    font-family: Muli;
    display: inline-block;
    position: absolute;
-   font-weight: 200; letter-spacing: 0.07em;
-   font-size: 1em; text-transform: uppercase;
+   font-weight: 200; letter-spacing: 0.07rem;
+   font-size: 0.7rem; text-transform: uppercase;
    top:0; left:0; background: #000; 
    padding: 4px; color: #fff;
    z-index: 2; line-height: 1;
@@ -71,53 +71,52 @@ navbar li{
    font-family: Muli;
    bottom:0; left:0; width: 100%; z-index: 2;
    h2{
-    font-weight: 700;
-    font-size: 1.8em;
+    font-weight: 300;
+    font-size: 1.3rem;
     line-height: 1.2;
     color: #fff;
-    padding: 0.5em; 
+    padding: 0.5rem; 
     background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.5) 80%);
    }
 }
 .article-preview-picture{
-   display: block; margin-bottom: 1em;
+   display: block; margin-bottom: 1rem;
    & img{display: block;}
 }
 .article-preview-description{
-   padding: 0 1em 1em;
-   font-size: 1.05em;
+   padding: 0 .5rem .5rem;
    line-height: 1.4;
    ul{list-style-type: none; padding: 0; clear: both;}
-   li{margin-bottom: .5em;}
+   li{margin-bottom: .5rem;}
 }
 .article-preview-date{
    font-family: Muli;
-   top:0.2em;
-   font-size: 0.9em;
+   top:0.2rem;
+   font-size: 0.9rem;
    font-weight: 300;
    float: left;
-    padding: 0.5em;
-    margin-right: 1em;
+    padding: 0.5rem;
+    margin-right: 1rem;
     background: #efefef;
-    border-radius: 0.3em;
+    border-radius: 0.3rem;
    }
 
-.article-preview-authors{font-family: Muli; display: inline-block; padding: 0.5em;}
+.article-preview-authors{font-family: Muli; display: inline-block; padding: 0.5rem;}
 .article-preview-source{font-family: Muli;  display: inline-block; color: #999;}
 
 // no image ------
 .article-preview.no-image{
-/*    padding-top: 1em;
+/*    padding-top: 1rem;
     background: #efefef;
     border-top: 2px solid darken(#efefef, 10);
     border-bottom: 2px solid darken(#efefef, 10);*/
     background: transparent;
     border:none;
     img{display: none;}
-    .article-category{background: transparent; color:#000; position: relative; padding-left: 1em;}
+    .article-category{background: transparent; color:#000; position: relative; padding-left: 1rem;}
     .article-preview-title{position: relative;}
     .article-preview-title h2{
-        padding: 0 0.5em;
+        padding: 0 0.5rem;
         color: #000;
         background: #efefef;
     }
@@ -131,36 +130,36 @@ navbar li{
 // list quotidiani del giorno ------
 .article-preview.list-description{
     background: aliceblue;
-    .article-preview-description{font-size: 1.25em;}
+    .article-preview-description{font-size: 1rem;}
 }
 
 /* NOW VIEW  Cards PREVIEW ------------ */
 .card-view{
     border: 1px solid #ddd;
-    margin: 0 0 1em;
-    border-radius: 0.3em;
-    padding: 0.7em;
+    margin: 0 0 1rem;
+    border-radius: 0.3rem;
+    padding: 0.7rem;
     background: #fff;
 }
 .card-title{
     font-family: Muli;
     font-weight: 700;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     line-height: 1.1;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.7rem;
 }
 .card-picture{
     small{display: inline-block; line-height: 1.5; opacity: 0.8;}
 }
 .card-content{
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 /* SPINNER ------------------------------ */
 .spinner {
-  width: 4.5em;
-  height: 4.5em;
-  margin: 5em auto;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 5rem auto;
   background-color: #e08915;
   border-radius: 100%;  
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
@@ -194,9 +193,9 @@ navbar li{
 }
 .btn{
     display: inline-block;
-    margin: 1em auto;
+    margin: 1rem auto;
     border-bottom: 1px solid rgba(0,0,0,0.15);
-    padding: 0.4em 1em;
+    padding: 0.4rem 1rem;
     text-transform: uppercase;
     color: #000;
 }
@@ -212,14 +211,34 @@ navbar li{
 /* ARTICLE DETAILS ------------------------------ */
 .go-back{display: inline-block; flex-grow: 1}
 .articleDetail{
-    position: absolute;
-    top: -44px;
+    position: fixed;
+    top: 38px;
     left: 0;
     bottom: 0;
     width: 100%;
-    background: coral;
+    background: #fefefe;
     z-index: 3;
     transform: translateY(100%);
     transition: all 250ms ease-out;
 }
 .articleDetail.open{transform: translateY(0);}
+.article-view{
+    width: 100%; height:100%; position: absolute; top:0; overflow: auto;
+}
+.article-content{padding: 0.5rem;}
+.article-main-image{
+    height: 0;
+    padding-top: 40%;
+    background-size: cover;
+    background-position: center;
+    display: block;
+    img{display: none;}
+    .article-category{
+        bottom:0;
+        top:auto;
+    }
+}
+.article-date{font-family: Muli; font-size: 0.8rem; background: slategrey; display: inline-block; color: #fff; font-weight: normal; padding: 0 .5rem; border-radius:4px;}
+.article-main-title{font-family: 'Muli'; line-height: 1.1; margin-bottom: 1rem;}
+.article-body{font-size: 1rem; line-height: 1.5;}
+.caption{font-size: .7rem; line-height: 1.2; display: block; text-align: left; padding:0.5rem; font-family: Muli;}

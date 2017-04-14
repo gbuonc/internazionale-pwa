@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
 import request from "superagent";
 
 class Now extends Component {
@@ -8,15 +8,11 @@ class Now extends Component {
       contents: []
     };
   }
-  componentDidMount() {
-    console.log('LOADED Now')
-    
-  }
+
   componentWillReceiveProps(nextProps){
       if(nextProps.activeSlide===this.props.slideIndex && this.state.contents.length===0){
         this.loadItems();
       }
-      
    }
   loadItems(){
     console.log("LOAD ITEMS");

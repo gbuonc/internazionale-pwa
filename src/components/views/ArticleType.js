@@ -18,7 +18,7 @@ const ArticleType = (props) =>{
    const titleType = props.article.title_type;
    const ArticleType = types[titleType] ? types[titleType] : types.default; 
    return (
-      ArticleType && <ArticleType />
+      ArticleType && <ArticleType article={props.article} />
    )
 }
 export default ArticleType;

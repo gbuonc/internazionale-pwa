@@ -1,44 +1,34 @@
 import React, { Component } from "react";
 import request from "superagent";
-import Spinner from "../common/Spinner";
-import ErrorMsg from "../common/ErrorMsg";
-import BackToTop from "../common/BackToTop";
-import LoadMore from "../common/LoadMore";
 import { getItems } from "../../utils/utils";
 
 class Home extends Component {
    constructor() {
       super();
       this.state = {
-         loading: false,
-         contents: [],
-         dateTime: 0,
-         loadedItems: 0,
-         totalItems: 0,
-         error: null
+         initialised : false
       };
-      this.loadItems = this.loadItems.bind(this);
    }
-   componentDidMount() {
-      this.loadItems();
-   }
-   loadItems() {
-      this.setState({ loading: true, error: null }, ()=>{
-         // scroll to show load spinner
-         this.scrollableView.scrollTop = this.scrollableView.scrollHeight;
-      });
-      getItems(
-         `items/home/0/0/${this.state.dateTime}.json`,
-         resp => this.parseItems(resp),
-         error => this.handleErrors(error)
-      );
-      // call API to update total number of records, fail silently
-      if(this.state.totalItems === 0){
-         getItems(
-         "count_items/home/0.json",
-         resp => this.setState({totalItems : resp.tot})
-         );
+   componentWillReceiveProps(nextProps){
+      if(!this.state.initialised){
+         if(nextProps.response !== this.props.response && this.props.response){
+            this.setState({initialised:true},()=>{
+               this.getItemsCount();
+               this.parseItems(nextProps.response);
+            })
+         }
+      }else{
+         if(nextProps.response !== this.props.response){
+            this.parseItems(nextProps.response);
+         }
       }
+   }
+   getItemsCount(){
+      // call API to update total number of records, fail silently
+      getItems(
+         "count_items/home/0.json",
+         resp => this.props.updateState({totalItems:resp.tot})
+      );
    }
    parseItems(resp) {
       const contents = resp.items.map(item => {
@@ -53,12 +43,16 @@ class Home extends Component {
          item.image = image;
          return item;
       });
-      this.setState((state)=>{
-         const dateTime = this.parseDateTime(resp.datetime);
-         const loadedItems = state.loadedItems+resp.tot;
-         const itemsContents = [...this.state.contents, ...contents];
-         return {loading: false, loadedItems, contents:itemsContents, dateTime}
-      });
+
+      const dateTime = this.parseDateTime(resp.datetime);
+      const loadedItems = this.props.loadedItems+resp.tot;
+      const itemsContents = [...this.props.contents, ...contents];
+      const newState = {
+         loadedItems:loadedItems, 
+         contents:itemsContents, 
+         dateTime:dateTime
+      };
+      this.props.updateState(newState);
    }
    parseDateTime(dateTime){
       if(typeof(dateTime)!== 'string') return dateTime;
@@ -68,7 +62,6 @@ class Home extends Component {
       const regexp2 = / /g;   // find spaces
       return dateTime.replace(regexp1, '-').replace(regexp2, '_');
    }
-      
    removeLeggiLink(content) {
       const temp = document.createElement("div");
       temp.innerHTML = content;
@@ -80,9 +73,6 @@ class Home extends Component {
       });
       return temp.innerHTML.toString();
    }
-   handleErrors(error) {
-      this.setState({loading: false, error: error});
-   }
    outputClassList(item){
       const classList = ["article-preview"];
       if (!(item.type === "text" || item.type === "list")){
@@ -92,18 +82,17 @@ class Home extends Component {
       if (!item.image) classList.push("no-image");
       return classList.join(" ");
    }
-   loadArticle(id){
-      // pass article object to parent
-      const article = this.state.contents.filter(article=> article.id===id);
+   loadArticle(item){
+      if(item.type === 'list') return; // disable click for list items (i titoli dei quotidiani di oggi)
+      const article = this.props.contents.filter(article=> article.id===item.id);
       this.props.loadArticle(article);
    }
    render() {
-      const loadMore = (this.state.loadedItems > 0) && (this.state.loadedItems < this.state.totalItems);
       return (
-         <div className="section-view" ref={(el)=>this.scrollableView = el}>
-            {this.state.contents.map(item => {
+         <div>
+            {this.props.contents.map(item => {
                return (
-                  <div key={item.id} className={this.outputClassList(item)} onClick={()=>this.loadArticle(item.id)}>
+                  <div key={item.id} className={this.outputClassList(item)} onClick={()=>this.loadArticle(item)}>
                      <picture className="article-preview-picture">
                         <h5 className="article-category">{item.title_type}</h5>
                         <img src={item.social_image} />
@@ -118,16 +107,8 @@ class Home extends Component {
                   </div>
                );
             })}
-            <Spinner enabled={this.state.loading}/>
-            <ErrorMsg error={this.state.error} retry={this.loadItems} />
-            {!this.state.loading && 
-               <div className="loadmore-wrapper">  
-                  <LoadMore enabled={loadMore} load={this.loadItems}/>
-                  <BackToTop enabled={this.state.loadedItems > 0} el={this.scrollableView}/>
-               </div>
-            }
          </div>
-      );
+      )
    }
 }
 export default Home;

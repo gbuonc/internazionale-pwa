@@ -1,18 +1,70 @@
-import React, { Component } from "react";
+import React, { Component, PureComponent } from "react";
 import { View } from 'react-view-pager';
-class SectionPage extends Component{
-   shouldComponentUpdate(nextProps, nextState){
-      return nextProps.activeSlide !== this.props.activeSlide;
+import { getItems } from "../../utils/utils";
+
+import config from "../../config";
+import Spinner from "../common/Spinner";
+import ErrorMsg from "../common/ErrorMsg";
+import BackToTop from "../common/BackToTop";
+import LoadMore from "../common/LoadMore";
+
+class SectionPage extends PureComponent{
+   constructor() {
+      super();
+      this.state = {
+         loading: false,
+         response: null,
+         contents:[],
+         dateTime: 0,
+         loadedItems: 0,
+         totalItems: 0,
+         error: null
+      };
+      this.loadItems = this.loadItems.bind(this);
+      this.updateState = this.updateState.bind(this);
+   }
+   componentWillReceiveProps(nextProps){
+      // load items via API first time current section slide is visible
+      if(nextProps.activeSlide===this.props.slideIndex && this.state.response===null){
+         this.setState({response:{}}, ()=> this.loadItems())
+      }
+   }
+   loadItems() {
+      this.setState({ loading: true, error: null }, ()=>{
+         // scroll to show load spinner
+         this.scrollableView.scrollTop = this.scrollableView.scrollHeight;
+         getItems(
+            `items/home/0/0/${this.state.dateTime}.json`,
+            resp => this.setState({loading:false, response:resp}),
+            error => this.setState({loading: false, error: error})
+         );
+      });
+   }
+   updateState(obj){
+      this.setState(obj)
    }
    render(){
       const Section = this.props.page;
+      const loadMore = (this.state.loadedItems > 0) && (this.state.loadedItems < this.state.totalItems);
       return (
          <View className="view-wrapper">
-            <Section 
-               loadArticle={this.props.loadArticle} 
-               activeSlide={this.props.activeSlide} 
-               slideIndex={this.props.slideIndex}
-            />
+            <div className="section-view" ref={(el)=>this.scrollableView = el}>
+               <Section 
+                  loadArticle={this.props.loadArticle} 
+                  activeSlide={this.props.activeSlide} 
+                  slideIndex={this.props.slideIndex}
+                  updateState={this.updateState}
+                  {...this.state}
+               />
+               <Spinner enabled={this.state.loading}/>
+               <ErrorMsg error={this.state.error} retry={this.loadItems} />
+               {!this.state.loading && 
+               <div className="loadmore-wrapper">  
+                  <LoadMore enabled={loadMore} load={this.loadItems}/>
+                  <BackToTop enabled={this.state.loadedItems > 0} el={this.scrollableView}/>
+               </div>
+            }
+            </div>
          </View>
       )
    }

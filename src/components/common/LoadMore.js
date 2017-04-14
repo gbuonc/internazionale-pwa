@@ -4,7 +4,7 @@ const LoadMore = (props) =>{
       props.enabled && (
          <div className="loadmore-wrapper">  
             <div className="btn btn-load-more" onClick={()=>props.load()}>
-               ▼ Carica altro {props.el}
+               ▼ Carica altro
             </div>
          </div>
       )
