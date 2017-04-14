@@ -4,9 +4,8 @@ class Foto extends Component{
       super();
    }
    render(){
-      return <div>Foto</div>;
-      /*const article = this.props.children[0];
-      console.log(this.props.children)
+      const article = this.props.article;
+      console.log(this.props.article)
       return(
          <div className="section-view">
             <h6>{article.title_type} {article.story_tag}</h6>
@@ -19,9 +18,7 @@ class Foto extends Component{
             {article.author.brief}
             <img src={article.author.img} alt=""/>
             <hr />
-            {article.content.data.map(content=>{
-               return <span dangerouslySetInnerHTML={{__html: content.data.text}} />
-            })}
+            
             {article.content_foto.data}
             {article.content_video.data}
             <img src={article.image} alt=""/>
@@ -33,7 +30,7 @@ class Foto extends Component{
             <p>{article.story_url}</p>
             <p>{article.url}</p>
          </div>
-      )*/
+      )
    }
 }
 export default Foto;

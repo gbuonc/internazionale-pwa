@@ -227,16 +227,13 @@ navbar li{
 }
 .article-content{padding: 0.5rem;}
 .article-main-image{
-    height: 0;
-    padding-top: 40%;
-    background-size: cover;
-    background-position: center;
     display: block;
-    img{display: none;}
+    img{display: block;}
     .article-category{
         bottom:0;
         top:auto;
     }
+    &.no-image{padding-top: 0; overflow: visible;}
 }
 .article-date{font-family: Muli; font-size: 0.8rem; background: slategrey; display: inline-block; color: #fff; font-weight: normal; padding: 0 .5rem; border-radius:4px;}
 .article-main-title{font-family: 'Muli'; line-height: 1.1; margin-bottom: 1rem;}
