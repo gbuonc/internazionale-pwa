@@ -1,38 +1,85 @@
 import React, { Component } from "react";
-class Default extends Component{
-   constructor(){
-      super();
-   }
-   render(){
-      const article = this.props.article;
-      console.log(this.props.article)
-      return(
-         <div className="section-view">
-            <h6>{article.title_type} {article.story_tag}</h6>
-            <h1>{article.title}</h1>
-            {article.time.value} {article.time.period}
-            <hr />
-            {article.time_absolute.value} {article.time_absolute.period}
-            {article.datetime}
-            {article.author.name}<br />
-            {article.author.brief}
-            <img src={article.author.img} alt=""/>
-            <hr />
-            {article.content.data.map(content=>{
-               return <span dangerouslySetInnerHTML={{__html: content.data.text}} />
-            })}
-            {article.content_foto.data}
-            {article.content_video.data}
-            <img src={article.image} alt=""/>
-            {article.social_links.short_url}
-            {article.social_links.email}
-            {article.social_links.facebook}
-            {article.social_links.twitter}
+import LazySizes from "react-lazysizes";
 
-            <p>{article.story_url}</p>
-            <p>{article.url}</p>
+const Default = (props)=>{
+   const article = props.article;
+   const img = props.article.article_img;
+   const altImg = props.article.content_foto.data[0];
+   const hasArticleImg = img || altImg ? true : false;
+   const author = article.author;
+   const social = article.social_links;
+   const articleType = article.content.data[0].type;
+
+   return(
+      <div className="article-view">
+         {hasArticleImg && (
+         <div className="article-header">
+            <picture className="article-main-image">
+               <h5 className="article-category">{article.title_type}</h5>
+               <LazySizes dataSrc={img.url || altImg2} alt={img.caption} />
+            </picture>
+            <div className="caption"><strong>{img.caption}</strong> <br />{img.credits}</div>
          </div>
-      )
-   }
+         )
+         }
+         <div className="article-content">
+            
+            <h4 className="article-date">{article.time_absolute.value} {article.time_absolute.period}{article.story_tag && ` - ${article.story_tag}`}</h4>
+            <h1 className="article-main-title">{article.title}</h1>
+            
+            {author && (
+              <div className={article.author.img ? 'article-author' : 'article-author no-image'}>
+                {article.author.name &&
+                  <h2 className="article-author-name">
+                    {article.author.name}
+                    {article.author.name && article.author.brief && ', '}
+                    {article.author.brief}
+                  </h2>
+                }
+                {(article.authors_fonte || article.authors_paese) && (
+                  <h3 className="article-source">
+                    {article.authors_fonte.name}
+                    {article.authors_fonte.name && article.authors_paese.name && ', '}
+                    {article.authors_paese.name}
+                  </h3>
+                )}
+                {article.author.img &&
+                 <LazySizes className="article-author-image" width="50" height="50" dataSrc={article.author.img} alt=""/>
+                }
+               </div>
+             )}
+            
+             <div className="article-body">
+                {!hasArticleImg && (
+                  <div>
+                     {/*Use caption as article content*/}
+                    <span dangerouslySetInnerHTML={{__html: img.caption}} /> <br /><strong>{img.credits}</strong>
+                  </div>
+               )}
+               {article.content.data.map((content, index)=>{
+                  return <span key={index} className={content.data.type} dangerouslySetInnerHTML={{__html: content.data.text}} />
+               })}
+               {/* vignette new yorker */}
+               {!hasArticleImg && article.image &&
+                  <div>
+                     <LazySizes dataSrc={article.image} alt="" />
+                     <span dangerouslySetInnerHTML={{__html: article.content.data[0].data.caption}} />
+                  </div>
+               }
+             </div>
+         </div>
+
+         {/*{article.content_foto.data}
+         {article.content_video.data}
+         
+         {social.short_url}
+         {social.email}
+         {social.facebook}
+         {social.twitter}
+
+         <p>{article.story_url}</p>
+         <p>{article.url}</p>*/}
+      </div>
+   )
 }
 export default Default;

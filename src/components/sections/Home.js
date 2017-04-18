@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import request from "superagent";
+import LazySizes from "react-lazysizes";
 import { getItems } from "../../utils/utils";
 
 class Home extends Component {
@@ -79,7 +80,7 @@ class Home extends Component {
          classList.push("no-description");
       }
       if (item.type === "list") classList.push("list-description");
-      if (!item.image) classList.push("no-image");
+      if (!item.image || item.title_type==='le regole') classList.push("no-image");
       return classList.join(" ");
    }
    loadArticle(item){
@@ -95,9 +96,13 @@ class Home extends Component {
                   <div key={item.id} className={this.outputClassList(item)} onClick={()=>this.loadArticle(item)}>
                      <picture className="article-preview-picture">
                         <h5 className="article-category">{item.title_type}</h5>
-                        <img src={item.social_image} />
+                        <LazySizes dataSrc={item.social_image} />
                         <div className="article-preview-title">
-                           <h2>{item.title}</h2>
+                           <h2>{item.title}
+                              {item.title === 'I titoli dei quotidiani di oggi' && 
+                              <span> - {item.time_absolute.value} {item.time_absolute.period}</span>
+                              }
+                           </h2>
                         </div>
                      </picture>
                      <div
