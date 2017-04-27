@@ -26,7 +26,7 @@ const getItems = (path, callback, handleErrors, timeout=15000) =>{
       }
       catch(e){
          // catch other errors
-         handleErrors('Spiacenti, si è verificato un errore.');
+         handleErrors('Impossibile raggiungere l\'API');
          console.log('CATCH ERROR', e);
       }
    })

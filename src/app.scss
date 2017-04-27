@@ -105,12 +105,12 @@ navbar li{
 .article-preview-source{font-family: Muli;  display: inline-block; color: #999;}
 
 // no image ------
-.article-preview.no-image{
+.article-preview.no-image,
+.article-preview-opinions{
     background: transparent;
     border:none;
     border-radius:0;
     padding: 0;
-    img{display: none;}
     .article-category{position: relative; color:slategrey; padding: 0; background: transparent;}
     .article-preview-title{position: relative;}
     .article-preview-title h2{
@@ -118,6 +118,7 @@ navbar li{
     }
     .article-preview-description{padding: 0;}
 }
+.article-preview.no-image img{display: none;}
 
 // no .description
 .article-preview.no-description{
@@ -135,6 +136,28 @@ navbar li{
     }
 }
 
+/* opinions list view */
+.article-preview-opinions{
+    .article-preview-title{font-size: 1.2rem; line-height: 1.1;}
+    .article-author{margin: 0 0 0.3rem;  color:#666;}
+    .article-author-image{margin:0 0.4rem 0 0;}
+}
+.article-preview-opinions-title-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    & > div{margin: 0;}
+}
+/* articles preview */
+.rules-view-wrapper{
+    
+}
+.article-preview-rules{
+    display: inline-block;
+    width: 50%;
+    height: 150px;
+}
+
 /* NOW VIEW  Cards PREVIEW ------------ */
 .card-view{
     border: 1px solid #ddd;
@@ -142,19 +165,20 @@ navbar li{
     border-radius: 0.3rem;
     padding: 0.7rem;
     background: #fff;
+    font-family: Muli;
 }
 .card-title{
-    font-family: Muli;
     font-weight: 700;
-    font-size: 1.8rem;
-    line-height: 1.1;
+    font-size: 1.4rem;
+    line-height: 1.2;
     margin-bottom: 0.7rem;
 }
 .card-picture{
     small{display: inline-block; line-height: 1.5; opacity: 0.8;}
 }
 .card-content{
-    font-size: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.2;
 }
 
 
@@ -201,10 +225,10 @@ navbar li{
     h2{font-size: 0.8rem; margin: 0;}
     h3{font-size: 0.8rem; margin: 0;}
     img{
-        position: absolute; top:0; left:0; background: #efefef;
-        width: 50px; height: 50px; border-radius:50%;
+        position: absolute; top:0; left:0;
     }
 }
+.article-author-image{background: #efefef; width: 50px; height: 50px; border-radius:50%;}
 .article-date{font-family: Muli; font-size: 0.9rem; color: slategrey; font-weight: 700;}
 .article-main-title{font-family: 'Martel'; line-height: 1.2; margin-bottom: 1rem;}
 .article-body{font-size: 1rem; line-height: 1.5;}
@@ -215,6 +239,15 @@ navbar li{
     list-style-position: inside; font-weight: bold;
     li{display: block; margin-bottom: 0.5rem;}
 }
+/* portfolio details */
+.portfolio-view{
+    background: #040404;
+    color: #fff;
+    a{color: #fff;}
+    .article-body{font-family: Muli;}
+}
+.portfolio-swiper{margin-bottom: 1rem;}
+.portfolio-caption{padding:.5rem 1rem; border-bottom: 1px solid #fff; display: inline-block;}
 
 /* SPINNER ------------------------------ */
 .spinner {

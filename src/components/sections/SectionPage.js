@@ -4,6 +4,7 @@ import { getItems } from "../../utils/utils";
 
 import config from "../../config";
 import Spinner from "../common/Spinner";
+import SectionWrapper from "./SectionWrapper";
 import ErrorMsg from "../common/ErrorMsg";
 import BackToTop from "../common/BackToTop";
 import LoadMore from "../common/LoadMore";
@@ -34,7 +35,7 @@ class SectionPage extends PureComponent{
          // scroll to show load spinner
          this.scrollableView.scrollTop = this.scrollableView.scrollHeight;
          getItems(
-            `items/home/0/0/${this.state.dateTime}.json`,
+            `${this.props.apiURL}${this.state.dateTime}.json`,
             resp => this.setState({loading:false, response:resp}),
             error => this.setState({loading: false, error: error})
          );
@@ -49,13 +50,15 @@ class SectionPage extends PureComponent{
       return (
          <View className="view-wrapper">
             <div className="section-view" ref={(el)=>this.scrollableView = el}>
-               <Section 
+               <SectionWrapper 
                   loadArticle={this.props.loadArticle} 
                   activeSlide={this.props.activeSlide} 
                   slideIndex={this.props.slideIndex}
                   updateState={this.updateState}
                   {...this.state}
-               />
+               >
+               <Section contents={this.state.contents} /> 
+               </SectionWrapper>
                <Spinner enabled={this.state.loading}/>
                <ErrorMsg error={this.state.error} retry={this.loadItems} />
                {!this.state.loading && 

@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import config from "../../config";
 
-import Notizie from '../articles/Notizie';
-import Foto from '../articles/Foto';
-import Video from '../articles/Video';
-import Default from '../articles/Default';
+import Notizie from './Notizie';
+import Foto from './Foto';
+import Video from './Video';
+import Default from './Default';
 
 const ArticleType = (props) =>{
    const types ={
       'notizie' : Notizie,
-      // 'opinioni' : Default,
       'portfolio' : Foto,
       'video' : Video,
       'default' : Default

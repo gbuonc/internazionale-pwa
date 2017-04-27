@@ -3,7 +3,7 @@ import request from "superagent";
 import LazySizes from "react-lazysizes";
 import { getItems } from "../../utils/utils";
 
-class Home extends Component {
+class SectionWrapper extends Component {
    constructor() {
       super();
       this.state = {
@@ -27,7 +27,7 @@ class Home extends Component {
    getItemsCount(){
       // call API to update total number of records, fail silently
       getItems(
-         "count_items/home/0.json",
+         "count_items/portfolio/0.json",
          resp => this.props.updateState({totalItems:resp.tot})
       );
    }
@@ -89,31 +89,12 @@ class Home extends Component {
       this.props.loadArticle(article);
    }
    render() {
-      return (
-         <div>
-            {this.props.contents.map(item => {
-               return (
-                  <div key={item.id} className={this.outputClassList(item)} onClick={()=>this.loadArticle(item)}>
-                     <picture className="article-preview-picture">
-                        <h5 className="article-category">{item.title_type}</h5>
-                        <LazySizes dataSrc={item.social_image} />
-                        <div className="article-preview-title">
-                           <h2>{item.title}
-                              {item.title === 'I titoli dei quotidiani di oggi' && 
-                              <span> - {item.time_absolute.value} {item.time_absolute.period}</span>
-                              }
-                           </h2>
-                        </div>
-                     </picture>
-                     <div
-                        className="article-preview-description"
-                        dangerouslySetInnerHTML={{__html: item.content_stream.data[0].data.text}}
-                     />
-                  </div>
-               );
-            })}
-         </div>
+      return(
+         React.cloneElement(this.props.children, { 
+            loadArticle: this.loadArticle.bind(this), 
+            outputClassList: this.outputClassList 
+         })
       )
    }
 }
-export default Home;
+export default SectionWrapper;
