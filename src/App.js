@@ -16,35 +16,49 @@ class App extends Component {
       };
    }
    componentDidMount() {
-      // basic router
+      // init basic router
       window.addEventListener('hashchange', ()=>{
-         console.log(window.location.hash)
-         const sectionLabel = window.location.hash.split('#/')[1];
-         const index = config.sections.map(el=>el.label.toLowerCase()).indexOf(sectionLabel);
-         this.changeSlide(index);
+         this.setRoute();
       }, false);
+      // set landing page on loading
+      window.location.hash = window.location.hash+'/' || '#/home';
+   }
+   getCurrentRoute(){
+      const hashArray = window.location.hash.split('#/')[1].split('/');
+      const sectionLabel = hashArray[0];
+      const articleLabel = hashArray[1];
+      return {sectionLabel, articleLabel};
+   }
+   setRoute(){
+      const {sectionLabel, articleLabel} = this.getCurrentRoute();
+      if(!articleLabel){
+         // go to section view
+         const sectionIndex = config.sections.map(el=>el.label.toLowerCase()).indexOf(sectionLabel);
+         const index = (sectionIndex > -1) ? sectionIndex : 0;
+         this.changeSlide(index, 0, 0);
+      }else{
+         // go to article view
+      }
    }
    changeSlide(currentIndex, wait = 0, reset = 350) {
-      if(currentIndex === this.state.activeSlide) return;
+      // if(currentIndex === this.state.activeSlide) return;
       setTimeout(() => {
          this.setState({ activeSlide: currentIndex }, () => {
             window.location.hash='#/'+config.sections[currentIndex].label.toLowerCase();
             setTimeout(() => {
-               this.setState({ swiping: false });
+               this.setState({ swiping: false, article: null });
             }, reset);
          });
       }, wait);
    }
    loadArticle(article) {
-      
-      console.log(article[0].url);
       this.setState({ article: article[0] }, ()=>{
-         // window.location.href=window.location.hash+article[0].url;
+         window.location.href=window.location.hash+article[0].url;
       });
-      
    }
-   goBack() {
-      this.setState({ article: null });
+   goBack(){
+      window.history.back();
+      //this.setState({ article: null });
    }
    render() {
       return (
